@@ -2,11 +2,11 @@ package models
 
 type UserLock struct {
     Model
-    LockID          int    `gorm:"column:lock_id"           json:"lock_id"`
-    OwnerID         int    `gorm:"column:owner_id"          json:"owner_id"`
-    TransferredTo   int    `gorm:"column:transferred_to"    json:"transferred_to"`
-    Picked          bool   `gorm:"column"picked"            json:"picked"`
-    Notes           string `gorm:"column:notes"             json:"notes"`
+    LockID          int     `gorm:"column:lock_id"           json:"lock_id"`
+    OwnerID         int     `gorm:"column:owner_id"          json:"owner_id"`
+    TransferredTo   *int    `gorm:"column:transferred_to"    json:"transferred_to"`
+    Picked          bool    `gorm:"column"picked"            json:"picked"`
+    Notes           *string `gorm:"column:notes"             json:"notes"`
 }
 
 type CreateUserLockInput struct {
@@ -17,5 +17,5 @@ type CreateUserLockInput struct {
 type UpdateUserLockInput struct {
     TransferredTo   int     `json:"transferred_to"`
     Picked          bool    `json:"picked"`
-    Notes           striing `json:"notes"`
+    Notes           string  `json:"notes"`
 }

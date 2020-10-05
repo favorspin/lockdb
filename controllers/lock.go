@@ -9,7 +9,7 @@ import (
 
 func GetAllLocks(c *gin.Context) {
     var locks []models.Lock
-    models.DB.Unscoped().Find(&locks)
+    models.DB.Find(&locks)
 
     c.JSON(http.StatusOK, gin.H{"data": locks})
 }

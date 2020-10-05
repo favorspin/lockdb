@@ -8,8 +8,8 @@ import (
 )
 
 func GetAllUserLocks(c *gin.Context) {
-    var userlocks []models.UserLocks
-    models.DB.Unscoped().Find(&userlocks)
+    var userlocks []models.UserLock
+    models.DB.Find(&userlocks)
 
     c.JSON(http.StatusOK, gin.H{"data": userlocks})
 }
@@ -24,7 +24,7 @@ func GetOneUserLock(c *gin.Context) {
     c.JSON(http.StatusOK, gin.H{"data": userlock})
 }
 
-func CreateUserLock(c *gin.Context) {
+func AddLockToUser(c *gin.Context) {
     var input models.CreateUserLockInput
     if err := c.ShouldBindJSON(&input); err != nil {
         c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -55,7 +55,7 @@ func UpdateUserLock(c *gin.Context) {
     c.JSON(http.StatusOK, gin.H{"data": userlock})
 }
 
-func DeleteUserLock(c *gin.Context) {
+func RemoveLockFromUser(c *gin.Context) {
     var userlock models.UserLock
     if err := models.DB.Where("id = ?", c.Param("id")).First(&userlock).Error; err != nil {
         c.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
