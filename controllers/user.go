@@ -31,7 +31,7 @@ func CreateUser(c *gin.Context) {
 		return
 	}
 
-	user := models.User{FirstName: input.FirstName, LastName: input.LastName}
+	user := models.User{Username: input.Username, FirstName: input.FirstName, LastName: input.LastName, Email: input.Email}
 	models.DB.Create(&user)
 
 	c.JSON(http.StatusOK, gin.H{"data": user})
